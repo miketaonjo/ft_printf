@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcloarec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/01 13:36:02 by mcloarec          #+#    #+#             */
-/*   Updated: 2022/04/25 15:37:19 by mcloarec         ###   ########.fr       */
+/*   Created: 2022/04/07 16:15:15 by mcloarec          #+#    #+#             */
+/*   Updated: 2023/03/14 00:37:55 by mcloarec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+char	*ft_strdup(const char *s)
 {
-	void			*p;
+	char	*str;
+	int		i;
 
-	if (size > 2147483647 || nmemb > 2147483647)
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	str = (char *)malloc(sizeof(char) * (i + 1));
+	if (!str)
 		return (NULL);
-	p = malloc(nmemb * size);
-	if (!p || (nmemb * size > 2147483647))
-		return (NULL);
-	ft_memset(p, 0, nmemb * size);
-	return (p);
+	i = 0;
+	while (s[i] != '\0')
+	{
+		str[i] = s[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }

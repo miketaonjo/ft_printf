@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printchar.c                                     :+:      :+:    :+:   */
+/*   ft_printpercent.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcloarec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/22 10:35:42 by mcloarec          #+#    #+#             */
-/*   Updated: 2022/04/22 11:25:38 by mcloarec         ###   ########.fr       */
+/*   Created: 2022/04/22 12:53:05 by mcloarec          #+#    #+#             */
+/*   Updated: 2023/03/14 00:36:17 by mcloarec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
-int	ft_printchar(int c)
+int	ft_printpercent(void)
 {
-	write(1, &c, 1);
+	write(1, "%", 1);
 	return (1);
 }

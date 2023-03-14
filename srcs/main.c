@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcloarec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/29 10:06:15 by mcloarec          #+#    #+#             */
-/*   Updated: 2022/04/25 18:37:52 by mcloarec         ###   ########.fr       */
+/*   Created: 2023/03/14 01:09:43 by mcloarec          #+#    #+#             */
+/*   Updated: 2023/03/14 01:28:55 by mcloarec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
-void	*ft_memset(void *s, int c, size_t n)
+int main(void)
 {
-	size_t			i;
-	unsigned char	*str;
+	int i = 42;
+	int *ptr = &i;
 
-	i = 0;
-	str = (unsigned char *) s;
-	while (i < n)
-	{
-		str[i] = c;
-		i++;
-	}
-	return (s);
+	ft_printf("Hello World\n");
+	ft_printf("%c\n", 'a');
+	ft_printf("%s\n", "I'm a 42 student");
+	ft_printf("%p\n", i);
+	ft_printf("%d\n", 42);
+	ft_printf("%i\n", 21);
+	ft_printf("%u\n", 4294967295);
+	ft_printf("%x\n", 42);
+	ft_printf("%X\n", 42);
+	ft_printf("%%\n");
+	return (0);
 }

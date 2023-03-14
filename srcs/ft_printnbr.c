@@ -1,79 +1,69 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printhexa.c                                     :+:      :+:    :+:   */
+/*   ft_printnbr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcloarec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/25 15:10:43 by mcloarec          #+#    #+#             */
-/*   Updated: 2022/04/27 11:04:07 by mcloarec         ###   ########.fr       */
+/*   Created: 2022/04/22 11:26:13 by mcloarec          #+#    #+#             */
+/*   Updated: 2023/03/14 00:36:04 by mcloarec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
-static int	ft_lenhexaint(unsigned int n)
+static int	ft_lenint(int n)
 {
 	int	len;
 
 	len = 0;
 	if (n == 0)
 		len++;
-	while (n != 0)
+	if (n < 0)
 	{
-		n = n / 16;
+		n = n * -1;
+		len++;
+	}
+	while (n > 0)
+	{
+		n = n / 10;
 		len++;
 	}
 	return (len);
 }
 
-static void	ft_check_x(char *str, unsigned int n, char c, int i)
-{
-	while (n > 0)
-	{
-		if ((n % 16) < 10)
-		{
-			str[--i] = 48 + (n % 16);
-			n = n / 16;
-		}
-		else
-		{
-			if (c == 'x')
-			{
-				str[--i] = 87 + (n % 16);
-				n = n / 16;
-			}
-			else if (c == 'X')
-			{
-				str[--i] = 55 + (n % 16);
-				n = n / 16;
-			}
-		}
-	}
-}
-
-static char	*ft_hexaitoa(unsigned int n, char c)
+static char	*ft_itoa(int n)
 {
 	char	*str;
 	int		i;
 
-	i = ft_lenhexaint(n);
+	i = ft_lenint(n);
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
 	str = ft_calloc(sizeof(char), (i + 1));
 	if (!str)
 		return (NULL);
 	if (n == 0)
 		str[0] = 48;
-	ft_check_x(str, n, c, i);
+	if (n < 0)
+	{
+		str[0] = '-';
+		n = n * -1;
+	}
+	while (n > 0)
+	{
+		str[--i] = 48 + (n % 10);
+		n = n / 10;
+	}
 	return (str);
 }
 
-int	ft_printhexa(unsigned int n, char c)
+int	ft_printnbr(int n)
 {
 	int		len;
 	char	*num;
 
-	len = 0;
-	num = ft_hexaitoa(n, c);
+	num = ft_itoa(n);
 	len = ft_printstr(num);
 	free(num);
 	return (len);
